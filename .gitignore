@@ -1,3 +1,19 @@
 
 chatbotEnv/
 Practice/.ipynb_checkpoints/
+Practice/gpt2-finetuned/config.json
+Practice/gpt2-finetuned/generation_config.json
+Practice/gpt2-finetuned/merges.txt
+Practice/gpt2-finetuned/model.safetensors
+Practice/gpt2-finetuned/special_tokens_map.json
+Practice/gpt2-finetuned/tokenizer_config.json
+Practice/gpt2-finetuned/vocab.json
+Practice/gpt2-finetuned/.ipynb_checkpoints/config-checkpoint.json
+Practice/gpt2-finetuned/checkpoint-816/config.json
+Practice/gpt2-finetuned/checkpoint-816/generation_config.json
+Practice/gpt2-finetuned/checkpoint-816/model.safetensors
+Practice/gpt2-finetuned/checkpoint-816/optimizer.pt
+Practice/gpt2-finetuned/checkpoint-816/rng_state.pth
+Practice/gpt2-finetuned/checkpoint-816/scheduler.pt
+Practice/gpt2-finetuned/checkpoint-816/trainer_state.json
+Practice/gpt2-finetuned/checkpoint-816/training_args.bin
