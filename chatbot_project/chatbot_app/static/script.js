@@ -15,50 +15,33 @@ document.querySelectorAll('#closeChat').forEach(function (element) {
     });
 });
 
-// Handle the send button click
-document.getElementById('sendButton').addEventListener('click', function () {
-    const userMessage = document.getElementById('textAreaExample').value;
-    if (userMessage) {
-        console.log('User message:', userMessage);
-        document.getElementById('textAreaExample').value = '';  // Clear the input area
-    }
-});
-
-function sendMessage() {
-    const userInput = document.getElementById('user-input').value;
+document.getElementById('sendButton').addEventListener('click', function() {
+    const userInput = document.getElementById('userInput').value;
     if (userInput.trim() === '') return;
 
-    const chatBox = document.getElementById('chat-box');
-    chatBox.innerHTML += `<div>User: ${userInput}</div>`;
-    
+    // Display user's message
+    const chatMessages = document.getElementById('chatMessages');
+    const userMessage = document.createElement('div');
+    userMessage.textContent = 'You: ' + userInput;
+    chatMessages.appendChild(userMessage);
+
     // Send message to Django backend
-    fetch('/chat/', {
+    fetch('/chatbot-response/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken')
+            'X-CSRFToken': '{{ csrf_token }}'
         },
-        body: JSON.stringify({ message: userInput })
+        body: JSON.stringify({ 'message': userInput })
     })
     .then(response => response.json())
     .then(data => {
-        chatBox.innerHTML += `<div>Bot: ${data.response}</div>`;
-        document.getElementById('user-input').value = '';
-        chatBox.scrollTop = chatBox.scrollHeight;
+        // Display chatbot's response
+        const botMessage = document.createElement('div');
+        botMessage.textContent = 'Bot: ' + data.response;
+        chatMessages.appendChild(botMessage);
     });
-}
 
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+    // Clear the input
+    document.getElementById('userInput').value = '';
+});
