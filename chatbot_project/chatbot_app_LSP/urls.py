@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import chatbot_response, index
+from .views import index2  # Example views in chatbot_app_LSP
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('chat/', chatbot_response, name='chatbot-response'),
+    path('', index2, name='index2'),  # Index page for chatbot_app_LSP
 ]
 
 if settings.DEBUG:

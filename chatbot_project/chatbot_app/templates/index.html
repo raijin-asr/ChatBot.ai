@@ -49,15 +49,17 @@
     <!-- Chat Widget UI -->
     <div id="chatWidget">
       <section>
-          <div class="container py-2">
+          <div class="container py-3">
               <div class="row d-flex justify-content-center">
                   <div class="col-md-12">
                       <div class="card" id="chat1" style="border-radius: 15px;">
                           <div class="card-header d-flex justify-content-between align-items-center p-3 text-white border-bottom-0"
                                style="border-top-left-radius: 15px; border-top-right-radius: 15px; background-color: #6df96d;">
                               <p class="mb-0 fw-bold">Chatbot.ai</p>
-                              <i class="fa fa-minus fa-xs" id="minimizeChat"></i>
-                              <i class="fa fa-times" id="closeChat"></i> clear all chat
+                              <div class="d-flex flex-row align-items-center">
+                                <i class="fa fa-minus me-3 fa-xs" id="minimizeChat"></i>
+                                <i class="fa fa-times" id="closeChat"></i> 
+                              </div>    
                           </div>
                           <div class="card-body" id="chatBody" style="max-height: 400px; overflow-y: auto;"> 
                               <!-- Chat messages will be appended here -->
@@ -77,70 +79,10 @@
   </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- <script src="{% static 'script.js' %}"></script> -->
+    <script src="{% static 'script.js' %}"></script>
     <script>
-      const chatIcon = document.getElementById('chatIcon');
-      const chatWidget = document.getElementById('chatWidget');
-      const chatBody = document.getElementById('chatBody');
-      const sendButton = document.getElementById('sendButton');
-      const userInput = document.getElementById('userInput');
-      const closeChat = document.getElementById('closeChat');
-  
-      chatIcon.addEventListener('click', () => {
-          chatWidget.style.display = 'block';
-      });
-  
-      closeChat.addEventListener('click', () => {
-          chatWidget.style.display = 'none';
-      });
-  
-      sendButton.addEventListener('click', () => {
-          const userMessage = userInput.value.trim();
-          if (userMessage) {
-              addMessageToChat('You', userMessage);
-              userInput.value = '';
-  
-              fetch('/chatbot-response/', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                      'X-CSRFToken': '{{ csrf_token }}'
-                  },
-                  body: JSON.stringify({ message: userMessage })
-              })
-              .then(response => response.json())
-              .then(data => {
-                  addMessageToChat('Bot', data.response);
-              });
-          }
-      });
-  
-
-// Function to initialize the chat with a welcome message
-function initializeChat() {
-    addMessageToChat('Chatbot', 'Welcome! I am Chatbot. Ask me anything.');
-}
-
-// Ensure the chat is initialized when the page loads
-document.addEventListener('DOMContentLoaded', (event) => {
-    initializeChat();
-});
-
-function addMessageToChat(sender, message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'd-flex flex-row justify-content-' + (sender === 'You' ? 'end' : 'start') + ' mb-4';
-    const messageContent = `
-        ${sender === 'You' ? '' : '<img src="static/img/chatbot-img.jpg" alt="Chatbot" style="width: 45px; height: 100%;">'}
-        <div class="p-3 ${sender === 'You' ? 'me-3 border bg-body-tertiary' : 'ms-3'}" style="border-radius: 15px; ${sender === 'You' ? '' : 'background-color: rgba(57, 192, 237,.2);'}">
-            <p class="small mb-0">${message}</p>
-        </div>
-        ${sender === 'You' ? '<img src="static/img/nepali-img.jpg" alt="User" style="width: 45px; height: 100%;">' : ''}
-    `;
-    messageDiv.innerHTML = messageContent;
-    chatBody.appendChild(messageDiv);
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
-
+    const staticUrl = "{% static 'img/chatbot-img.jpg' %}";
+    const userImageUrl = "{% static 'img/nepali-img.jpg' %}";
   </script>  
 </body>
 </html>

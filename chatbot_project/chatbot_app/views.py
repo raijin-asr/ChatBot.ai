@@ -16,13 +16,15 @@ def extract_text_from_pdf(pdf_path):
         text = ''.join([page.extract_text() for page in reader.pages])
     return text
 
+pdf_path = os.path.join(os.path.dirname(__file__), 'static/chatbot-dialogs.pdf')
+pdf_text = extract_text_from_pdf(pdf_path)
+
 def preprocess_text(text):
     questions = re.findall(r'\bQ:\s*(.*?)(?=\n|$)', text, re.DOTALL)
     responses = re.findall(r'\bA:\s*(.*?)(?=\n|$)', text, re.DOTALL)
-    return [(q.strip(), responses[i].strip()) for i, q in enumerate(questions) if i < len(responses)]
+    paired_data = [(q.strip(), responses[i].strip()) for i, q in enumerate(questions) if i < len(responses)]
+    return paired_data
 
-pdf_path = os.path.join(os.path.dirname(__file__), 'static/chatbot-dialogs.pdf')
-pdf_text = extract_text_from_pdf(pdf_path)
 paired_data = preprocess_text(pdf_text)
 
 def find_closest_match(question, paired_data, threshold=0.5):
