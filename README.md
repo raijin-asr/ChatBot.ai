@@ -1,5 +1,5 @@
-# ChatBot
-Custom ChatBox | Generative ChatBot
+# ChatBot.ai
+Custom ChatBox
 </br>
 
 <h1>Screenshots:</h1>
@@ -10,4 +10,4 @@ Custom ChatBox | Generative ChatBot
 </br>
 
 ![image](https://github.com/user-attachments/assets/bf933cf9-abe9-4021-a718-b2332d7e93ae)
-<p>Fig2: Chatbot Web UI</p>
+<p>Fig2: Chatbot Widget UI</p>
