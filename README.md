@@ -1,5 +1,5 @@
 # ChatBot.ai
-Custom ChatBox
+Custom ChatBox: BIT Final Year Project 
 </br>
 
 <h1>Screenshots:</h1>
@@ -11,3 +11,6 @@ Custom ChatBox
 
 ![image](https://github.com/user-attachments/assets/bf933cf9-abe9-4021-a718-b2332d7e93ae)
 <p>Fig2: Chatbot Widget UI</p>
+
+![final output- langBot](https://github.com/user-attachments/assets/7346562c-de5e-4a9a-a279-163589ec9137)
+<p> Fig 3: Full Page Chatbot</p>
