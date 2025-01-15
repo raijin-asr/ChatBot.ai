@@ -1,5 +1,5 @@
 # ChatBot.ai
-Custom ChatBox: BIT Final Year Project 
+ChatBot: BIT Final Year Project 
 </br>
 
 <h1>Screenshots:</h1>
